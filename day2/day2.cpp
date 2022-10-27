@@ -21,16 +21,7 @@ vector<int> mult(vector<int> v, int pos){
     return v;
 }
 
-int main(){
-    onStart();
-    vector<string> input;
-    readInput(&input, "day2/input.txt");
-    vector<int> conv;
-
-    conv = split(input, ',');
-    conv[1] = 12;
-    conv[2] = 2;
-
+int testProgram(vector<int> conv){
     for(int i = 0; i < conv.size(); i++){
         int curr = conv[i];
         switch(curr){
@@ -43,14 +34,32 @@ int main(){
                 i += 3;
                 continue;
             case 99:
-                for(int i = 0; i < conv.size(); i++){
-                    cout << conv[i] << endl;
-                }    
-
-
-                return 0;
+               // for(int i = 0; i < conv.size(); i++){
+               //     cout << conv[i] << endl;
+            //}    
+                return conv[0];
             default:
                 break;
+        }
+    }
+}
+
+int main(){
+    onStart();
+    vector<string> input;
+    readInput(&input, "day2/input.txt");
+    vector<int> conv;
+
+    conv = split(input, ',');
+    int result = 0;
+    for(int i = 0; i < 100;i++){
+        conv[1] = i;
+        for(int j = 0; j < 100; j++){
+            conv[2] = j;
+            result = testProgram(conv); 
+            if(result == 19690720){
+                cout << "Answer is " << i << " and " << j << endl;
+            }
         }
     }
     
